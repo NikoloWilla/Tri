@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Piano flessibile per triathlon olimpico e mezze maratone.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>ENDURANCE / 10H</title>
+  <style>
+    :root{
+      --bg:#e9e6df;--paper:#f4f1ea;--ink:#151515;--muted:#68655e;
+      --line:#c9c4b9;--card:#efede7;--dark:#171717;--radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:auto}
+    header{padding:28px 0 20px;border-bottom:1px solid var(--line)}
+    .top{display:flex;justify-content:space-between;gap:20px;align-items:flex-end}
+    .eyebrow{font-size:11px;letter-spacing:.18em;font-weight:800;color:var(--muted);text-transform:uppercase}
+    h1{font-size:clamp(38px,7vw,78px);line-height:.88;margin:10px 0 0;letter-spacing:-.065em}
+    .sub{max-width:620px;color:var(--muted);margin:16px 0 0;font-size:15px;line-height:1.55}
+    .badge{background:var(--dark);color:white;border-radius:999px;padding:10px 14px;font-size:12px;font-weight:800;white-space:nowrap}
+    nav{display:flex;gap:8px;overflow:auto;padding:16px 0 2px;position:sticky;top:0;background:rgba(233,230,223,.92);backdrop-filter:blur(10px);z-index:5}
+    nav button,.filter{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 13px;font:inherit;font-size:12px;font-weight:750;cursor:pointer;white-space:nowrap}
+    nav button.active,.filter.active{background:var(--dark);color:white;border-color:var(--dark)}
+    main{padding:28px 0 70px}
+    .hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:22px}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .panel h2{margin:0 0 10px;font-size:24px;letter-spacing:-.03em}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+    .stat{background:var(--card);border-radius:13px;padding:13px}.stat b{display:block;font-size:20px}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .focus{font-size:42px;font-weight:900;letter-spacing:-.06em;line-height:.9;margin:10px 0}
+    .week-head{display:flex;justify-content:space-between;align-items:end;margin:34px 0 12px}
+    .week-head h2{margin:0;font-size:30px;letter-spacing:-.05em}
+    .progress{font-size:12px;color:var(--muted)}
+    .days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+    .day{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}
+    .day.done{outline:2px solid var(--ink)}
+    .daytop{padding:13px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+    .dow{font-size:11px;font-weight:900;text-transform:uppercase}.date{font-size:10px;color:var(--muted)}
+    .workout{padding:14px;min-height:210px}.type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:900}
+    .workout h3{font-size:20px;line-height:1;margin:7px 0 10px;letter-spacing:-.04em}
+    .meta{font-size:12px;line-height:1.55;color:#333}
+    .tag{display:inline-block;margin-top:12px;padding:5px 8px;background:#dedbd3;border-radius:999px;font-size:10px;font-weight:800}
+    .check{display:flex;align-items:center;gap:8px;padding:11px 14px;border-top:1px solid var(--line);font-size:11px;font-weight:800}
+    .check input{accent-color:#111;width:16px;height:16px}
+    .details{margin-top:8px;border-top:1px dashed var(--line);padding-top:9px}
+    .details summary{font-size:11px;font-weight:800;cursor:pointer;color:var(--muted)}
+    .details p{font-size:11px;line-height:1.5}
+    .section{margin-top:32px}.section h2{font-size:30px;letter-spacing:-.05em;margin:0 0 12px}
+    .filters{display:flex;gap:7px;overflow:auto;margin-bottom:14px}
+    .list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
+    .card h3{margin:4px 0 7px}.card p{margin:5px 0;font-size:13px;line-height:1.5;color:#444}
+    .note{background:var(--dark);color:white;border-radius:var(--radius);padding:22px;margin-top:22px}
+    .note p{color:#d5d5d5;line-height:1.6}
+    footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:11px}
+    @media(max-width:900px){.days{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr}.list{grid-template-columns:1fr}}
+    @media(max-width:560px){.wrap{width:min(100% - 20px,1180px)}.top{align-items:flex-start}.badge{display:none}.stats{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.workout{min-height:0}nav{margin:0 -10px;padding-left:10px;padding-right:10px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div>
+      <div class="eyebrow">ENDURANCE SYSTEM / 10H</div>
+      <h1>TRI + HALF</h1>
+      <p class="sub">Struttura ripetibile per triathlon olimpico e mezze maratone. Sette giorni attivi, carico modulabile, focus su endurance e continuità.</p>
+    </div>
+    <div class="badge">STATIC / GITHUB PAGES</div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav>
+  <button class="active" data-view="week">Settimana</button>
+  <button data-view="system">Sistema</button>
+  <button data-view="sessions">Sedute</button>
+  <button data-view="notes">Note</button>
+</nav>
+
+<main>
+<section id="week-view">
+  <div class="hero-grid">
+    <div class="panel">
+      <div class="eyebrow">Ciclo base</div>
+      <h2>7 giorni / ~10 ore</h2>
+      <p class="sub">La settimana resta stabile. Cambiano durata, intensità e focus in base alla fase.</p>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>Run</span></div>
+        <div class="stat"><b>2</b><span>Swim</span></div>
+        <div class="stat"><b>2</b><span>Bike</span></div>
+        <div class="stat"><b>2</b><span>Strength</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">Focus corrente</div>
+      <div class="focus" id="focus">BASE</div>
+      <p class="sub">4 settimane: costruzione → progressione → carico alto → scarico.</p>
+    </div>
+  </div>
+
+  <div class="week-head">
+    <h2>Settimana tipo</h2>
+    <div class="progress"><span id="doneCount">0</span>/7 completati</div>
+  </div>
+  <div class="days" id="days"></div>
+</section>
+
+<section id="system-view" hidden>
+  <div class="section">
+    <h2>Il sistema</h2>
+    <div class="list">
+      <article class="card"><div class="eyebrow">01 / Base</div><h3>7–9 h</h3><p>Prevalenza Z1–Z2, tecnica, forza e costruzione della continuità.</p></article>
+      <article class="card"><div class="eyebrow">02 / Build</div><h3>9–10 h</h3><p>Più lavoro a soglia, bici strutturata e lunghi progressivi.</p></article>
+      <article class="card"><div class="eyebrow">03 / Specific</div><h3>9–11 h</h3><p>Ritmi gara, brick e sedute specifiche per il focus scelto.</p></article>
+      <article class="card"><div class="eyebrow">04 / Deload</div><h3>7–8 h</h3><p>Volume ridotto, intensità controllata e recupero.</p></article>
+    </div>
+  </div>
+  <div class="note"><div class="eyebrow">FOCUS SWITCH</div><p><b>Mezza maratona:</b> aumenta progressivamente il peso del lungo e della qualità di corsa, mantenendo bici e nuoto principalmente aerobici.</p><p><b>Triathlon olimpico:</b> mantieni la corsa stabile e dai più spazio a bici, nuoto, tecnica e brick.</p></div>
+</section>
+
+<section id="sessions-view" hidden>
+  <div class="section">
+    <h2>Sedute</h2>
+    <div class="filters">
+      <button class="filter active" data-filter="all">Tutte</button>
+      <button class="filter" data-filter="run">Run</button>
+      <button class="filter" data-filter="swim">Swim</button>
+      <button class="filter" data-filter="bike">Bike</button>
+      <button class="filter" data-filter="strength">Strength</button>
+    </div>
+    <div class="list" id="sessionList"></div>
+  </div>
+</section>
+
+<section id="notes-view" hidden>
+  <div class="section">
+    <h2>Regole del piano</h2>
+    <div class="list">
+      <article class="card"><h3>Intensità</h3><p>La maggior parte del volume resta facile. Le sedute dure sono poche e distinte.</p></article>
+      <article class="card"><h3>Progressione</h3><p>Aumenta prima la continuità, poi durata e specificità. Non alzare tutto contemporaneamente.</p></article>
+      <article class="card"><h3>Weekend</h3><p>Il sabato è il riferimento per la mezza; la domenica per la resistenza in bici e il brick.</p></article>
+      <article class="card"><h3>Flessibilità</h3><p>Se sei affaticato, mantieni il giorno ma trasforma la seduta in Z1–Z2 o accorciala.</p></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">ENDURANCE / dati salvati localmente sul dispositivo · nessun account richiesto</div></footer>
+</div>
+
+<script>
+const workouts=[
+ {d:"LUN",date:"01",type:"run",name:"Corsa qualità",dur:"60′",tag:"Soglia / intervalli",detail:"15′ easy · 3×8′ Z4 con 3′ easy · 10′ defaticamento. Alterna nelle settimane con 6×3′ Z4–Z5 o 2×15′ ritmo mezza."},
+ {d:"MAR",date:"02",type:"swim",name:"Nuoto + forza A",dur:"60–75′",tag:"Tecnica + forza",detail:"Nuoto 1.500–1.700 m. Poi pull-up 3×5–8 · dip 3×5–8 · Bulgarian split squat 3×8/lato · single-leg RDL 3×8/lato · calf raise · core."},
+ {d:"MER",date:"03",type:"run",name:"Corsa aerobica",dur:"60′",tag:"Z2",detail:"10′ easy · 40′ Z2 · 10′ easy. Ogni 2–3 settimane aggiungi 6×20″ di allunghi."},
+ {d:"GIO",date:"04",type:"swim",name:"Nuoto + forza B",dur:"60–75′",tag:"Tecnica + forza",detail:"Nuoto 1.800–2.000 m. Poi pull-up/chin-up · push-up/pike push-up · step-up · hip hinge · Copenhagen plank · leg raise."},
+ {d:"VEN",date:"05",type:"bike",name:"Bici strutturata",dur:"60′",tag:"Z3",detail:"15′ Z1–Z2 · 3×10′ Z3 · 5′ Z2 tra blocchi · 10′ easy. Ogni 3–4 settimane: 60′ Z2."},
+ {d:"SAB",date:"06",type:"run",name:"Long Run",dur:"90–120′",tag:"Endurance",detail:"Z2. Progressione tipica 90′ → 100′ → 110′ → scarico. Nel focus mezza puoi arrivare a 120′ e inserire 15′ finali Z3."},
+ {d:"DOM",date:"07",type:"bike",name:"Long Ride + brick",dur:"2–3 h",tag:"Endurance / tri",detail:"Bici Z2. Progressione 2h → 2h15 → 2h30 → scarico. Occasionalmente aggiungi 15–20′ di corsa molto facile subito dopo."}
+];
+const key="enduranceDoneV1";
+let done=JSON.parse(localStorage.getItem(key)||"{}");
+
+function renderDays(){
+ const el=document.querySelector("#days"); el.innerHTML="";
+ workouts.forEach((w,i)=>{
+   const checked=!!done[i];
+   el.innerHTML+=`<article class="day ${checked?"done":""}">
+    <div class="daytop"><span class="dow">${w.d}</span><span class="date">${w.date}</span></div>
+    <div class="workout"><div class="type">${w.type}</div><h3>${w.name}</h3><div class="meta"><b>${w.dur}</b><br>${w.tag}</div>
+      <details class="details"><summary>Apri dettagli</summary><p>${w.detail}</p></details>
+    </div>
+    <label class="check"><input type="checkbox" data-i="${i}" ${checked?"checked":""}> COMPLETATO</label>
+   </article>`;
+ });
+ document.querySelectorAll("input[data-i]").forEach(x=>x.onchange=e=>{
+   done[e.target.dataset.i]=e.target.checked; localStorage.setItem(key,JSON.stringify(done)); renderDays();
+ });
+ document.querySelector("#doneCount").textContent=Object.values(done).filter(Boolean).length;
+}
+function renderSessions(filter="all"){
+ const el=document.querySelector("#sessionList"); el.innerHTML="";
+ workouts.filter(w=>filter==="all"||w.type===filter).forEach(w=>{
+   el.innerHTML+=`<article class="card"><div class="eyebrow">${w.d} / ${w.type}</div><h3>${w.name}</h3><p><b>${w.dur}</b> · ${w.tag}</p><p>${w.detail}</p></article>`;
+ });
+}
+document.querySelectorAll("nav button").forEach(btn=>btn.onclick=()=>{
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active")); btn.classList.add("active");
+ document.querySelectorAll("main>section").forEach(s=>s.hidden=true);
+ document.querySelector("#"+btn.dataset.view+"-view").hidden=false;
+});
+document.querySelectorAll(".filter").forEach(btn=>btn.onclick=()=>{
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderSessions(btn.dataset.filter);
+});
+renderDays();renderSessions();
+</script>
+</body>
+</html>
