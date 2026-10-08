@@ -1,9 +1,1 @@
-{
-  "name":"ENDURANCE / TRI + HALF",
-  "short_name":"TRI + HALF",
-  "start_url":".",
-  "display":"standalone",
-  "background_color":"#e9e6df",
-  "theme_color":"#111111",
-  "lang":"it"
-}
+{"name":"ENDURANCE / TRI + HALF","short_name":"TRI + HALF","start_url":".","display":"standalone","background_color":"#090a0b","theme_color":"#090a0b","lang":"it"}
