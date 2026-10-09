@@ -1,52 +1,136 @@
-<!doctype html><html lang="it"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090a0b"><title>ENDURANCE / TRI + HALF</title>
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a0b">
+<title>Endurance — Training Guide</title>
 <style>
-:root{--bg:#090a0b;--s:#101214;--s2:#17191b;--line:#292d30;--t:#f1f1ed;--m:#8d9290;--a:#d8ff38;--r:18px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,system-ui,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.wrap{width:min(1240px,calc(100% - 36px));margin:auto}.ey{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--m);font-weight:900}
-header{padding:27px 0 22px;border-bottom:1px solid var(--line)}.top{display:flex;justify-content:space-between;align-items:end;gap:20px}h1{font-size:clamp(43px,8vw,86px);line-height:.83;letter-spacing:-.075em;margin:10px 0}.sub{max-width:700px;color:var(--m);font-size:14px;line-height:1.55}.badge{color:var(--a);border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:10px;font-weight:900}
-nav{position:sticky;top:0;z-index:5;background:#090a0beF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.navin{display:flex;gap:6px;padding:10px 0;overflow:auto}
-button{font:inherit;color:inherit;cursor:pointer}.navbtn,.phasebtn,.filter{background:var(--s);border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-size:11px;font-weight:850;white-space:nowrap}.active{background:var(--t)!important;color:#090a0b!important;border-color:var(--t)!important}
-main{padding:26px 0 70px}.view[hidden]{display:none}.overview{display:grid;grid-template-columns:1.4fr .75fr;gap:14px}.panel,.day,.phasecard,.session{background:var(--s);border:1px solid var(--line);border-radius:var(--r)}.panel{padding:21px}.phase-title{font-size:43px;letter-spacing:-.07em;font-weight:950;line-height:.9;margin:10px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:17px}.stat{background:var(--s2);border-radius:12px;padding:12px}.stat b{display:block;font-size:19px}.stat span{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--m)}
-.phasebar{display:flex;gap:7px;overflow:auto;margin:22px 0 13px}.phasebtn{text-align:left;min-width:150px;border-radius:14px}.phasebtn strong{display:block}.phasebtn small{display:block;color:var(--m);margin-top:3px}.phase-meta{display:flex;justify-content:space-between;align-items:end;margin:18px 0 12px}.phase-meta h2,.section h2{font-size:31px;letter-spacing:-.055em;margin:0}.phase-meta p{margin:4px 0;color:var(--m);font-size:12px}.progress{font-size:11px;color:var(--m)}
-.days{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}.day{overflow:hidden}.day.done{border-color:#718020;box-shadow:inset 0 0 0 1px #718020}.daytop{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--line)}.dow{font-size:10px;font-weight:950}.date{font-size:9px;color:#5f6562}.workout{padding:13px;min-height:235px}.type{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--m);font-weight:900}.workout h3{font-size:18px;line-height:1;margin:7px 0 10px}.meta{font-size:11px;line-height:1.5;color:#c7cbc9}.tag{display:inline-block;margin-top:11px;padding:5px 8px;background:#202428;border:1px solid var(--line);border-radius:999px;font-size:9px;font-weight:850}.details{margin-top:12px;border-top:1px dashed var(--line);padding-top:9px}.details summary{cursor:pointer;color:var(--m);font-size:10px;font-weight:850}.details p{font-size:10px;line-height:1.55;color:#b6bbb8}.check{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding:10px 13px;font-size:10px;font-weight:900}.check input{width:15px;height:15px;accent-color:var(--a)}
-.section{margin-top:31px}.section>.sub{margin-top:8px}.compare,.list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.compare{grid-template-columns:repeat(4,1fr)}.phasecard,.session{padding:17px}.phasecard.current{border-color:var(--a)}.phasecard .num{color:var(--a);font-size:10px;font-weight:900}.phasecard h3,.session h3{margin:7px 0 6px;font-size:20px}.phasecard p,.session p{font-size:12px;line-height:1.5;color:var(--m);margin:5px 0}.phasecard button{border:0;background:transparent;text-decoration:underline;text-underline-offset:4px;padding:10px 0 0;font-size:10px;font-weight:900}.filters{display:flex;gap:7px;overflow:auto;margin:14px 0 12px}
-footer{border-top:1px solid var(--line);padding:22px 0;color:#5f6562;font-size:10px}
-@media(max-width:950px){.days{grid-template-columns:repeat(2,1fr)}.overview{grid-template-columns:1fr}.compare{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{width:calc(100% - 20px)}.badge{display:none}.stats{grid-template-columns:repeat(2,1fr)}.days,.compare,.list{grid-template-columns:1fr}.workout{min-height:0}.phasebtn{min-width:135px}}
-</style></head><body>
-<header><div class="wrap top"><div><div class="ey">ENDURANCE SYSTEM / OLYMPIC TRIATHLON + HALF MARATHON</div><h1>TRI + HALF</h1><p class="sub">Piano flessibile e ripetibile. La struttura settimanale rimane stabile; le quattro fasi cambiano progressivamente carico e specificità.</p></div><div class="badge">DARK MODE / STATIC</div></div></header>
-<nav><div class="wrap navin"><button class="navbtn active" data-view="plan">Piano</button><button class="navbtn" data-view="phases">Tutte le fasi</button><button class="navbtn" data-view="sessions">Libreria sedute</button></div></nav>
-<main class="wrap">
-<section id="plan-view" class="view"><div class="overview">
-<div class="panel"><div class="ey">Fase visualizzata</div><div class="phase-title" id="phaseName"></div><p class="sub" id="phaseDesc"></p><div class="stats"><div class="stat"><b>3</b><span>Run</span></div><div class="stat"><b>2</b><span>Swim</span></div><div class="stat"><b>2</b><span>Bike</span></div><div class="stat"><b>2</b><span>Strength</span></div></div></div>
-<div class="panel"><div class="ey">Carico indicativo</div><div class="phase-title" id="hours"></div><p class="sub">Puoi consultare qualsiasi fase in anticipo senza modificare la progressione.</p></div></div>
-<div class="ey" style="margin-top:24px">Seleziona una fase</div><div class="phasebar" id="phasebar"></div>
-<div class="phase-meta"><div><h2>Settimana tipo</h2><p id="phaseFocus"></p></div><div class="progress"><span id="doneCount">0</span>/7 completati</div></div><div class="days" id="days"></div></section>
-<section id="phases-view" class="view" hidden><div class="section"><h2>Tutte le fasi</h2><p class="sub">Consulta una fase, anche se non è quella attuale.</p><div class="compare" id="phaseCards"></div></div></section>
-<section id="sessions-view" class="view" hidden><div class="section"><h2>Libreria sedute</h2><div class="filters"><button class="filter active" data-filter="all">Tutte</button><button class="filter" data-filter="run">Run</button><button class="filter" data-filter="swim">Swim</button><button class="filter" data-filter="bike">Bike</button><button class="filter" data-filter="strength">Strength</button></div><div class="list" id="sessionList"></div></div></section>
-</main><footer><div class="wrap">ENDURANCE / TRI + HALF · completamenti salvati localmente nel browser</div></footer>
+:root{--bg:#090a0b;--card:#111315;--card2:#171a1c;--line:#292d30;--text:#f2f2ed;--muted:#969b98;--accent:#d8ff38;--blue:#9bd7ff;--orange:#ffb66e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0%,#1a1e1c 0,#090a0b 35%);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+.wrap{max-width:1180px;margin:auto;padding:28px 22px 70px}.top{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:25px 0 35px;border-bottom:1px solid var(--line)}h1{font-size:clamp(42px,7vw,82px);line-height:.88;margin:0;letter-spacing:-.06em}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:12px}.intro{max-width:560px;color:var(--muted);font-size:15px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;color:var(--muted)}
+nav{position:sticky;top:0;z-index:10;background:rgba(9,10,11,.88);backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid var(--line)}.tabs{display:flex;gap:8px;overflow:auto}.tab{white-space:nowrap;background:var(--card);border:1px solid var(--line);color:var(--muted);padding:9px 14px;border-radius:999px;cursor:pointer}.tab.active{background:var(--accent);color:#090a0b;border-color:var(--accent);font-weight:800}
+section{padding-top:38px}.phase-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:18px}.phase-head h2{font-size:34px;letter-spacing:-.04em;margin:0}.phase-head p{margin:5px 0 0;color:var(--muted)}.phase-meta{font-size:12px;color:var(--muted);text-align:right}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(145deg,var(--card),#0d0f10);border:1px solid var(--line);border-radius:18px;padding:19px;min-height:180px}.card .type{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800}.card h3{margin:8px 0 5px;font-size:21px}.meta{color:var(--muted);font-size:13px;margin-bottom:12px}.detail{color:#d9dcda;font-size:14px}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.tag{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:var(--muted)}
+.callout{margin:20px 0;background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:18px}.callout strong{color:var(--accent)}.callout p{margin:6px 0 0;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.panel h3{margin-top:0}.panel ul{padding-left:18px;color:var(--muted)}.panel li{margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.1em}td{color:#d7dad8}
+footer{margin-top:55px;color:#686d6a;font-size:12px;border-top:1px solid var(--line);padding-top:18px}
+@media(max-width:720px){.top{display:block}.top .pill{display:inline-block;margin-top:20px}.grid,.cols{grid-template-columns:1fr}.phase-head{display:block}.phase-meta{text-align:left;margin-top:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div><div class="eyebrow">Endurance / self-guided</div><h1>TRAINING<br>GUIDE</h1></div>
+  <div class="intro">Una libreria di sedute organizzata per fase. Nessun calendario fisso: scegli tu i giorni, combina le sedute e usa questa pagina come linea guida.</div>
+</header>
+
+<nav><div class="tabs" id="tabs"></div></nav>
+
+<main id="app"></main>
+
+<section>
+<div class="phase-head"><div><div class="eyebrow">Ritmi corsa</div><h2>Riferimenti personali</h2><p>Basati sull'obiettivo di portare la mezza a circa 1h30.</p></div></div>
+<div class="cols">
+<div class="panel">
+<h3>Ritmi indicativi</h3>
+<table><tr><th>Zona / lavoro</th><th>Ritmo</th></tr>
+<tr><td>Recupero</td><td>6:00–6:30/km</td></tr>
+<tr><td>Z2 / facile</td><td>5:35–6:05/km</td></tr>
+<tr><td>Medio controllato</td><td>5:15–5:30/km</td></tr>
+<tr><td>Ritmo mezza target</td><td>4:15/km</td></tr>
+<tr><td>Tempo / soglia</td><td>4:20–4:35/km</td></tr>
+<tr><td>Intervalli</td><td>3:55–4:15/km</td></tr>
+</table>
+</div>
+<div class="panel">
+<h3>Come usare i ritmi</h3>
+<ul>
+<li>Il <strong>4:15/km</strong> è il ritmo-obiettivo per 1h30, non un ritmo da usare subito in tutte le sedute.</li>
+<li>Le uscite facili devono rimanere davvero facili: se serve, vai più lento dei range indicati.</li>
+<li>I ritmi sono riferimenti, non vincoli: caldo, salite, stanchezza e fondo possono modificarli.</li>
+<li>Per bici e nuoto usa per ora la FC: Z1 recupero, Z2 aerobico, Z3 medio, Z4 soglia, Z5 intenso.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<div class="phase-head"><div><div class="eyebrow">Regole</div><h2>Struttura libera</h2><p>Non devi completare le sedute in un ordine settimanale fisso.</p></div></div>
+<div class="callout"><strong>Principio:</strong> scegli 3 corse + 2 nuoto + 2 bici quando hai tempo, evitando di mettere due lavori duri consecutivi. La forza può essere inserita dopo nuoto o bici facile. Il lungo di corsa e il lungo di bici sono le sedute da proteggere maggiormente.</div>
+<div class="cols">
+<div class="panel"><h3>Settimana tipo, senza giorni</h3><ul><li>1 corsa qualità</li><li>1 corsa facile/aerobica</li><li>1 lungo corsa</li><li>1 bici qualità</li><li>1 bici lunga</li><li>1 nuoto tecnica/aerobico</li><li>1 nuoto qualità + forza</li></ul></div>
+<div class="panel"><h3>Se hai poco tempo</h3><ul><li>Priorità: lungo corsa + lungo bici</li><li>Poi una seduta qualità di corsa</li><li>Poi una seduta qualità bici</li><li>Il resto può essere ridotto senza “recuperare” tutto nella settimana successiva.</li></ul></div>
+</div>
+</section>
+
+<footer>Training guide — i volumi sono indicativi e possono essere adattati in base a recupero, lavoro e condizioni.</footer>
+</div>
+
 <script>
-const phases=[
-{id:"base",name:"BASE",hours:"7–9 H",desc:"Costruzione della continuità. Prevalenza Z1–Z2, tecnica, forza e progressione controllata.",focus:"Aerobico / tecnica"},
-{id:"build",name:"BUILD",hours:"9–10 H",desc:"Progressione del carico. Più lavoro a soglia, bici strutturata e lunghi progressivi.",focus:"Progressione"},
-{id:"specific",name:"SPECIFIC",hours:"9–11 H",desc:"Lavoro specifico per il focus scelto. Ritmi gara, brick e sedute più mirate.",focus:"Specificità"},
-{id:"deload",name:"DELOAD",hours:"7–8 H",desc:"Scarico programmato. Volume ridotto, intensità controllata e recupero.",focus:"Recupero"}];
-const workouts=[
-{d:"LUN",type:"run",name:"Corsa qualità",dur:"60′",tag:"Soglia / intervalli",detail:"15′ easy · 3×8′ Z4 con 3′ easy · 10′ defaticamento. Alterna nelle settimane con 6×3′ Z4–Z5 o 2×15′ ritmo mezza."},
-{d:"MAR",type:"swim",name:"Nuoto + forza A",dur:"60–75′",tag:"Tecnica + forza",detail:"Nuoto 1.500–1.700 m. Poi pull-up 3×5–8 · dip 3×5–8 · Bulgarian split squat 3×8/lato · single-leg RDL 3×8/lato · calf raise · core."},
-{d:"MER",type:"run",name:"Corsa aerobica",dur:"60′",tag:"Z2",detail:"10′ easy · 40′ Z2 · 10′ easy. Ogni 2–3 settimane aggiungi 6×20″ di allunghi."},
-{d:"GIO",type:"swim",name:"Nuoto + forza B",dur:"60–75′",tag:"Tecnica + forza",detail:"Nuoto 1.800–2.000 m. Poi pull-up/chin-up · push-up/pike push-up · step-up · hip hinge · Copenhagen plank · leg raise."},
-{d:"VEN",type:"bike",name:"Bici strutturata",dur:"60′",tag:"Z3",detail:"15′ Z1–Z2 · 3×10′ Z3 · 5′ Z2 tra blocchi · 10′ easy. Ogni 3–4 settimane: 60′ Z2."},
-{d:"SAB",type:"run",name:"Long Run",dur:"90–120′",tag:"Endurance",detail:"Z2. Progressione tipica 90′ → 100′ → 110′ → scarico. Nel focus mezza puoi arrivare a 120′ e inserire 15′ finali Z3."},
-{d:"DOM",type:"bike",name:"Long Ride + brick",dur:"2–3 h",tag:"Endurance / tri",detail:"Bici Z2. Progressione 2h → 2h15 → 2h30 → scarico. Occasionalmente aggiungi 15–20′ di corsa molto facile subito dopo."}];
-let selected="base",done=JSON.parse(localStorage.getItem("enduranceDoneV2")||"{}");
-function selectPhase(id){selected=id;let p=phases.find(x=>x.id===id);phaseName.textContent=p.name;hours.textContent=p.hours;phaseDesc.textContent=p.desc;phaseFocus.textContent=p.focus+" · stessa struttura settimanale";renderPhaseButtons();renderDays()}
-function renderPhaseButtons(){phasebar.innerHTML=phases.map((p,i)=>`<button class="phasebtn ${p.id===selected?"active":""}" data-p="${p.id}"><strong>0${i+1} / ${p.name}</strong><small>${p.hours} · ${p.focus}</small></button>`).join("");document.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>selectPhase(b.dataset.p))}
-function renderDays(){days.innerHTML=workouts.map((w,i)=>{let k=selected+"-"+i,c=!!done[k];return `<article class="day ${c?"done":""}"><div class="daytop"><span class="dow">${w.d}</span><span class="date">${phases.findIndex(p=>p.id===selected)+1}/04</span></div><div class="workout"><div class="type">${w.type}</div><h3>${w.name}</h3><div class="meta"><b>${w.dur}</b><br>${w.tag}</div><details class="details"><summary>Dettagli allenamento</summary><p>${w.detail}</p></details></div><label class="check"><input type="checkbox" data-k="${k}" ${c?"checked":""}> COMPLETATO</label></article>`}).join("");document.querySelectorAll("[data-k]").forEach(x=>x.onchange=e=>{done[e.target.dataset.k]=e.target.checked;localStorage.setItem("enduranceDoneV2",JSON.stringify(done));renderDays()});doneCount.textContent=workouts.filter((_,i)=>done[selected+"-"+i]).length}
-function renderCards(){phaseCards.innerHTML=phases.map((p,i)=>`<article class="phasecard ${p.id===selected?"current":""}"><div class="ey">0${i+1}</div><h3>${p.name}</h3><p><b>${p.hours}</b> · ${p.focus}</p><p>${p.desc}</p><button data-open="${p.id}">VEDI GLI ALLENAMENTI →</button></article>`).join("");document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{selectPhase(b.dataset.open);switchView("plan")})}
-function renderSessions(f="all"){sessionList.innerHTML=workouts.filter(w=>f==="all"||w.type===f).map(w=>`<article class="session"><div class="ey">${w.d} / ${w.type}</div><h3>${w.name}</h3><p><b>${w.dur}</b> · ${w.tag}</p><p>${w.detail}</p></article>`).join("")}
-function switchView(v){document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.view===v));document.querySelectorAll(".view").forEach(x=>x.hidden=true);document.getElementById(v+"-view").hidden=false;if(v==="phases")renderCards();scrollTo(0,0)}
-document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>switchView(b.dataset.view));document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderSessions(b.dataset.filter)});
-selectPhase("base");renderSessions();
-</script></body></html>
+const phases = {
+BASE:{
+title:"BASE", weeks:"4 settimane", desc:"Costruzione aerobica, tecnica e tolleranza al volume. Intensità controllata.",
+load:"~8–9 h/settimana",
+sessions:[
+["RUN","Qualità controllata","8–10 km","15' facile + 3×6' a 4:35–4:50/km, rec. 3' + defaticamento","Costruisci continuità senza cercare la massima intensità.","Z3–Z4"],
+["RUN","Aerobica","8–10 km","Ritmo 5:35–6:05/km. Ultimi 4×20\" brillanti con recupero completo.","Corsa facile + economia.","Z2"],
+["RUN","Lungo","14–17 km","5:40–6:10/km. Progressivo solo se stai bene: ultimi 2–3 km 5:15–5:30/km.","Aumenta gradualmente il tempo sulle gambe.","Z2"],
+["BIKE","Qualità","60'","15' Z1–Z2 + 3×8' Z3, rec. 4' Z2 + 10' facili.","Primo stimolo strutturato senza accumulare fatica.","Z3"],
+["BIKE","Lungo","1h45–2h15","Prevalenza Z2; 3×8' Z3 durante la seconda metà.","Base aerobica e abitudine alla durata.","Z2–Z3"],
+["SWIM","Tecnica + aerobico","1.500–1.700 m","Riscaldamento + tecnica + serie continue facili in Z2.","Economia e confidenza in acqua.","Z1–Z2"],
+["SWIM + STR","Aerobico + forza","1.600–1.800 m + 25'","Nuoto Z2 con 6×100m Z3. Poi forza generale: trazioni, dip, split squat, RDL, core.","Forza senza arrivare a cedimento.","Z2–Z3"]
+]},
+BUILD:{
+title:"BUILD", weeks:"4 settimane", desc:"Più volume e più tempo a intensità medio-alta. Introduzione sistematica del ritmo mezza.",
+load:"~9–10 h/settimana",
+sessions:[
+["RUN","Qualità","9–11 km","15' facile + 3×8' a 4:25–4:40/km, rec. 3' + defaticamento.","Sviluppo della soglia.","Z3–Z4"],
+["RUN","Aerobica + ritmo","9–11 km","6–7 km a 5:30–5:55/km + 3×1 km a 5:05–5:20/km, rec. 2' facile.","Avvicina il ritmo medio senza trasformare la seduta in gara.","Z2–Z3"],
+["RUN","Lungo","16–19 km","5:35–6:00/km. Ogni 2 settimane: ultimi 4–5 km a 5:00–5:20/km.","Volume + finale controllato.","Z2–Z3"],
+["BIKE","Qualità","60–70'","15' Z2 + 3×10' Z3–Z4, rec. 5' Z2 + defaticamento.","Aumenta il tempo utile a intensità.","Z3–Z4"],
+["BIKE","Lungo","2h–2h30","Z2 con 2×15' Z3 nella seconda metà. Se recuperi bene, 10–15' corsa facile dopo.","Resistenza specifica e primo brick regolare.","Z2–Z3"],
+["SWIM","Tecnica + volume","1.700–2.000 m","Tecnica + 8×100m Z3 + nuoto continuo Z2.","Più volume mantenendo qualità tecnica.","Z2–Z3"],
+["SWIM + STR","Qualità + forza","1.900–2.100 m + 25'","10×100m alternando Z3/Z4, recupero breve. Forza: 2–3 serie per esercizio, senza cedimento.","Stimolo più specifico, forza mantenuta.","Z3–Z4"]
+]},
+SPECIFIC:{
+title:"SPECIFIC / PICCO", weeks:"4 settimane", desc:"Sedute vicine alle richieste di mezza e triathlon olimpico. Volume alto ma controllato.",
+load:"~10–11 h/settimana",
+sessions:[
+["RUN","Soglia / ritmo mezza","10–12 km","2 km facili + 2×3 km a 4:20–4:30/km, rec. 3' + 2 km facili. Alternativa: 6×1 km a 4:00–4:15/km, rec. 2'.","Seduta chiave per avvicinarsi all'obiettivo 1h30.","Z4"],
+["RUN","Aerobica","9–11 km","7–9 km a 5:25–5:50/km + 4×20\" strides.","Recupero attivo senza perdere brillantezza.","Z2"],
+["RUN","Lungo specifico","18–21 km","Primi 11–14 km a 5:35–5:55/km + 4–6 km a 4:35–4:50/km. Non ogni settimana.","Simula fatica + ritmo controllato.","Z2–Z4"],
+["BIKE","Specifico triathlon","65–75'","15' Z2 + 3×12' Z3–Z4, rec. 4' Z2 + 10' facili. Ogni 2 settimane: 15' corsa facile subito dopo.","Sostenere intensità da gara senza esaurirsi.","Z3–Z4"],
+["BIKE","Lungo + brick","2h15–2h45","Prevalenza Z2 + 3×15' Z3. Brick 15–20' corsa a 5:30–5:50/km.","Adattamento alla corsa dopo bici.","Z2–Z3"],
+["SWIM","Race specific","1.900–2.300 m","Riscaldamento + tecnica + 3×300m Z3–Z4 + 6×100m Z4, recuperi brevi + defaticamento.","Tolleranza al ritmo sostenuto.","Z3–Z4"],
+["SWIM + STR","Qualità + forza mantenimento","2.000–2.400 m + 20'","Serie principali Z3–Z4. Forza ridotta: 2 serie per esercizio, carico/volume moderato.","Mantieni forza senza rubare recupero alla qualità.","Z3–Z4"]
+]},
+DELOAD:{
+title:"DELOAD / RESET", weeks:"1–2 settimane", desc:"Riduzione del carico. Mantieni qualche richiamo di intensità, tagliando soprattutto volume.",
+load:"~6–7,5 h/settimana",
+sessions:[
+["RUN","Richiamo qualità","6–8 km","2 km facili + 3×5' a 4:30–4:45/km, rec. 3' + defaticamento.","Mantieni brillantezza con poco volume.","Z3–Z4"],
+["RUN","Facile","7–9 km","5:40–6:10/km, senza progressioni obbligatorie.","Recupero.","Z2"],
+["RUN","Lungo ridotto","12–15 km","5:40–6:05/km. Niente finale veloce.","Riduci la fatica accumulata.","Z2"],
+["BIKE","Richiamo","45–55'","15' Z2 + 4×3' Z3, rec. 3' + facile.","Mantieni il gesto senza caricare.","Z2–Z3"],
+["BIKE","Lungo ridotto","1h30–1h50","Z2 costante. Niente brick se sei affaticato.","Recupero aerobico.","Z2"],
+["SWIM","Facile + tecnica","1.200–1.500 m","Tecnica, esercizi di sensibilità e nuoto facile.","Recupero attivo.","Z1–Z2"],
+["SWIM + MOB","Facile + forza","1.300–1.600 m + 15'","Nuoto facile. Mobilità + forza molto leggera, lontano dal cedimento.","Scarico generale.","Z1–Z2"]
+]}
+};
+
+const tabs=document.getElementById("tabs"), app=document.getElementById("app");
+function render(key){
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.key===key));
+ const p=phases[key];
+ app.innerHTML=`<section>
+ <div class="phase-head"><div><div class="eyebrow">Fase selezionata</div><h2>${p.title}</h2><p>${p.desc}</p></div><div class="phase-meta">${p.weeks}<br>${p.load}</div></div>
+ <div class="callout"><strong>Questa non è una settimana da seguire.</strong><p>È una raccolta di sedute da cui scegliere. Puoi spostare i giorni liberamente; mantieni però almeno 24 h tra i lavori più impegnativi quando possibile.</p></div>
+ <div class="grid">${p.sessions.map(s=>`<article class="card"><div class="type">${s[0]}</div><h3>${s[1]}</h3><div class="meta">${s[2]} · ${s[5]}</div><div class="detail">${s[3]}</div><div class="tags"><span class="tag">${s[4]}</span><span class="tag">FASE ${p.title}</span></div></article>`).join("")}</div>
+ </section>`;
+}
+Object.keys(phases).forEach((k,i)=>{const b=document.createElement("button");b.className="tab"+(i===0?" active":"");b.textContent=phases[k].title;b.dataset.key=k;b.onclick=()=>render(k);tabs.appendChild(b)});
+render("BASE");
+</script>
+</body></html>
